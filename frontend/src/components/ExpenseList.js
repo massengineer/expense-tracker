@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import ExpenseCharts from "./ExpenseCharts";
 
 export default function ExpenseList() {
   const [expenses, setExpenses] = useState([]);
@@ -9,17 +10,35 @@ export default function ExpenseList() {
   }, []);
 
   const fetchExpenses = async () => {
-    const res = await axios.get("http://localhost:5000/expenses");
-    setExpenses(res.data);
+    try {
+      const response = await axios.get("http://localhost:5000/expenses");
+      setExpenses(response.data);
+    } catch (error) {
+      console.error("Error fetching expenses:", error);
+    }
   };
 
   return (
-    <div>
-      {expenses.map((exp) => (
-        <div key={exp._id}>
-          {exp.title} - ${exp.amount}
-        </div>
-      ))}
+    <div className="p-6">
+      {/* Display Pie Chart and Line Chart Side by Side */}
+      <ExpenseCharts expenses={expenses} />
+
+      {/* Display Expenses Below */}
+      <div className="mt-6">
+        {expenses.map((expense) => (
+          <div
+            key={expense.id}
+            className="p-4 bg-gray-100 dark:bg-gray-700 rounded-md shadow-md mb-2"
+          >
+            <h3 className="text-gray-900 dark:text-gray-100">
+              {expense.title}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300">
+              ${expense.amount}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
