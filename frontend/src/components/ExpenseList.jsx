@@ -30,7 +30,7 @@ export default function ExpenseList() {
             key={expense.id}
             className="p-4 bg-gray-100 dark:bg-gray-700 rounded-md shadow-md mb-2"
           >
-            <h3 className="text-gray-900 dark:text-gray-100">
+            <h3 className="text-blue-500 dark:text-gray-100">
               {expense.title}
             </h3>
             <p className="text-gray-600 dark:text-gray-300">

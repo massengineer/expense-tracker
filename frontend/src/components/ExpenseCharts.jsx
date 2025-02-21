@@ -86,5 +86,5 @@ export default function ExpenseCharts({ expenses }) {
 }
 
 ExpenseCharts.propTypes = {
-  expenses: PropTypes.func.isRequired, // This ensures `expenses` is a function and required
+  expenses: PropTypes.array.isRequired, // This ensures `expenses` is an array and required
 };

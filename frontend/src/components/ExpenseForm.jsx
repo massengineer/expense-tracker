@@ -35,7 +35,10 @@ export default function ExpenseForm({ fetchExpenses }) {
         onChange={(e) => setExpense({ ...expense, category: e.target.value })}
         className="p-2 mb-2"
       />
-      <button type="submit" className="p-2 bg-purple-600 text-white">
+      <button
+        type="submit"
+        className="p-2 bg-purple-600 text-white rounded-r-md"
+      >
         Add Expense
       </button>
     </form>
