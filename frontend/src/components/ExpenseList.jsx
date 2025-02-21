@@ -34,7 +34,10 @@ export default function ExpenseList() {
               {expense.title}
             </h3>
             <p className="text-gray-600 dark:text-gray-300">
-              ${expense.amount}
+              £{expense.amount}
+            </p>
+            <p className="text-gray-500 dark:text-gray-400">
+              {expense.category}
             </p>
           </div>
         ))}

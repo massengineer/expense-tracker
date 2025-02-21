@@ -21,7 +21,7 @@ export default function ExpenseForm({ fetchExpenses }) {
         type="text"
         placeholder="Title"
         onChange={(e) => setExpense({ ...expense, title: e.target.value })}
-        className="p-2 mb-2"
+        className="p-2 mb-2 rounded-l-md"
       />
       <input
         type="number"

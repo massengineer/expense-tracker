@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
-import ExpenseChart from "./components/ExpenseCharts";
 import ThemeToggle from "./components/ThemeToggle";
 
 function App() {
@@ -28,7 +27,6 @@ function App() {
       <ExpenseForm fetchExpenses={fetchExpenses} />
       <div className="expense-content">
         <ExpenseList expenses={expenses} />
-        <ExpenseChart expenses={expenses} />
       </div>
     </div>
   );
