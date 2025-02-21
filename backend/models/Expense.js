@@ -1,10 +1,23 @@
 import mongoose from "mongoose";
 
-const ExpenseSchema = new mongoose.Schema({
-  title: String,
-  amount: Number,
-  category: String,
-  date: { type: Date, default: Date.now },
+// Define schema for an expense
+const expenseSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  amount: {
+    type: Number,
+    required: true,
+  },
+  category: {
+    type: String,
+    required: true,
+  },
 });
 
-export default mongoose.model("Expense", ExpenseSchema);
+// Create model from the schema
+const Expense = mongoose.model("Expense", expenseSchema);
+
+// Export the model for use in routes
+export default Expense;
