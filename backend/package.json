@@ -4,8 +4,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node server.js", // I think I found the problem with what I am doing the other day, I DO NOT HAVE A server.js!
+    "dev": "nodemon server.js" // I think I found the problem with what I am doing the other day, I DO NOT HAVE A server.js!
   },
   "keywords": [],
   "author": "",
