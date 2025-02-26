@@ -68,7 +68,7 @@ export default function ExpenseCharts({ expenses }) {
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={expenses}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="title" />
+            <XAxis dataKey="title" /> // I want to make the axis show the date at which the expense was made but this has to be done manually as the app is not directly linked bank transaction insights
             <YAxis />
             <Tooltip />
             <Line
