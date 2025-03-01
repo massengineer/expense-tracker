@@ -4,13 +4,11 @@ const router = express.Router();
 
 // POST route for creating an expense
 router.post("/", async (req, res) => {
-  console.log("Received POST request with body:", req.body); // Add this log
   try {
     const expense = await Expense.create(req.body);
-    console.log("Created expense:", expense); // Add this log
+    console.log("Created expense:", expense);
     res.json(expense);
   } catch (error) {
-    console.error("Error creating expense:", error);
     res.status(500).send("Server Error");
   }
 });
