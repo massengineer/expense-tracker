@@ -73,9 +73,14 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
       /> This is a preliminary input field but will most likely chamge and not 
       be like this as I want the date to have a calendar date picker and the category 
       to have a dropdown menu with the option of selecting other and then adding custom category*/}
-      <button type="submit" className="p-2 bg-purple-600 text-white rounded-md">
-        Add Expense
-      </button>
+      <div className="absolute top-4 left-2/3 -translate-x-1/3">
+        <button
+          type="submit"
+          className="p-2 bg-purple-600 text-white rounded-md"
+        >
+          Add Expense
+        </button>
+      </div>
     </form>
   );
 }

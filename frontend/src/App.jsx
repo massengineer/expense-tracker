@@ -23,7 +23,9 @@ function App() {
 
   return (
     <div className="App">
-      <ThemeToggle />
+      <div className="absolute right-4 top-4">
+        <ThemeToggle />
+      </div>
       <ExpenseForm fetchExpenses={fetchExpenses} setExpenses={setExpenses} />
       <div className="expense-content">
         <ExpenseList expenses={expenses} />
