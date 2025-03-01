@@ -13,9 +13,19 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Fetch all expenses and format the date
 router.get("/", async (req, res) => {
-  const expenses = await Expense.find();
-  res.json(expenses);
+  try {
+    const expenses = await Expense.find();
+    const formattedExpenses = expenses.map((expense) => ({
+      ...expense.toObject(),
+      date: expense.date.toISOString().split("T")[0], // Format the date
+    }));
+    res.json(formattedExpenses);
+  } catch (error) {
+    console.error("Error fetching expenses:", error);
+    res.status(500).send("Server Error");
+  }
 });
 
 router.put("/:id", async (req, res) => {
