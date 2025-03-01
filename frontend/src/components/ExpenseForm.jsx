@@ -8,6 +8,7 @@ export default function ExpenseForm({ fetchExpenses }) {
     title: "",
     amount: "",
     category: "",
+    date: "",
   });
 
   const handleSubmit = async (e) => {
@@ -15,8 +16,6 @@ export default function ExpenseForm({ fetchExpenses }) {
     await axios.post("http://localhost:5000/expenses", expense);
     fetchExpenses();
   };
-
-  const [selectedDate, setSelectedDate] = useState("");
 
   return (
     <form onSubmit={handleSubmit} className="p-4 bg-gray-200 dark:bg-gray-800">
@@ -43,8 +42,8 @@ export default function ExpenseForm({ fetchExpenses }) {
         Select Date
       </label>
       <Datepicker
-        value={selectedDate}
-        onSelectedDateChanged={(date) => setSelectedDate(date)}
+        value={expense.date}
+        onSelectedDateChanged={(date) => setExpense({ ...expense, date })}
         className="w-full border border-gray-300 rounded-lg px-3 py-2"
       />
       {/* TODO:
