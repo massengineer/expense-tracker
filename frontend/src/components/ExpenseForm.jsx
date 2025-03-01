@@ -68,7 +68,7 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
       </label>
       <Datepicker
         value={expense.date ? new Date(expense.date) : null} // Pass a valid Date object or null
-        onChange={(date) => setExpenses({ ...expense, date: date })}
+        onChange={(date) => setExpense({ ...expense, date: date })}
         className="w-full border border-gray-300 dark:text-gray-200 rounded-lg px-3 py-2"
       />
       {/* TODO:
