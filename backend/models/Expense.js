@@ -12,12 +12,12 @@ const expenseSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    required: true, 
-  },
-  date: {
-    type: Date,
     required: true,
   },
+  // date: {
+  //   type: Date,
+  //   required: true,
+  // },
 });
 
 // Create model from the schema
