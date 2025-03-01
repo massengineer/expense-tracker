@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ExpenseCharts from "./ExpenseCharts";
+import PropTypes from "prop-types";
 
-export default function ExpenseList() {
-  const [expenses, setExpenses] = useState([]);
+export default function ExpenseList({ expenses }) {
+  const [setExpenses] = useState([]);
 
   useEffect(() => {
     fetchExpenses();
-  }, []);
+  });
 
   const fetchExpenses = async () => {
     try {
@@ -39,10 +40,14 @@ export default function ExpenseList() {
             <p className="text-gray-500 dark:text-gray-400">
               {expense.category}
             </p>
-            <p className="text-gray-500 dark:text-gray-400">{expense.date}</p>
+            {/* <p className="text-gray-500 dark:text-gray-400">{expense.date}</p> */}
           </div>
         ))}
       </div>
     </div>
   );
 }
+
+ExpenseList.propTypes = {
+  expenses: PropTypes.array.isRequired,
+};
