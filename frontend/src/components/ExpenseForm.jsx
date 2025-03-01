@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { Datepicker } from "flowbite-react";
+import { Datepicker } from "flowbite-react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
@@ -8,7 +8,7 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
     title: "",
     amount: "",
     category: "",
-    // date: "", // Store the selected date as a string
+    date: null, // Store the selected date as a string
   });
 
   const handleSubmit = async (e) => {
@@ -20,7 +20,7 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
         expense
       );
       setExpenses((prevExpenses) => [...prevExpenses, response.data]);
-      setExpense({ title: "", amount: "", category: "" });
+      setExpense({ title: "", amount: "", category: "", date: null });
       fetchExpenses();
     } catch (error) {
       console.error("Error adding expense:", error);
@@ -35,6 +35,35 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
       console.error("Error deleting expenses:", error);
     }
   };
+
+  // // Handle date change from Flowbite datepicker
+  // const handleDateChange = (date) => {
+  //   // If the date is valid, format it, otherwise set it to null
+  //   const formattedDate = date ? date.toISOString().split("T")[0] : null;
+  //   setExpense({ ...expense, date: formattedDate });
+  // };
+
+  // // Handle date change from Flowbite datepicker
+  // const handleDateChange = (date) => {
+  //   if (date) {
+  //     // Convert UTC date to UK Date format (yyyy-mm-dd)
+  //     const formattedDate = formatDateToUK(date);
+  //     setExpense({ ...expense, date: formattedDate });
+  //   } else {
+  //     setExpense({ ...expense, date: null });
+  //   }
+  // };
+
+  // // Helper function to convert UTC date to YYYY-MM-DD format (UK Date format)
+  // const formatDateToUK = (utcDate) => {
+  //   const date = new Date(utcDate);
+  //   const year = date.getUTCFullYear();
+  //   const month = String(date.getUTCMonth() + 1).padStart(2, "0"); // Ensure two digits
+  //   const day = String(date.getUTCDate()).padStart(2, "0"); // Ensure two digits
+
+  //   // Return the formatted date in YYYY-MM-DD
+  //   return `${year}-${month}-${day}`;
+  // };
 
   return (
     <form onSubmit={handleSubmit} className="p-4 bg-gray-200 dark:bg-gray-800">
@@ -63,16 +92,14 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
         required
       />
       {/* Datepicker */}
-      {/* <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
         Select Date
       </label>
       <Datepicker
-        value={expense.date}
-        onChange={(date) =>
-          setExpense({ ...expense, date: date.toISOString().split("T")[0] })
-        } // Convert to YYYY-MM-DD
+        value={expense.date ? new Date(expense.date) : null} // Pass a valid Date object or null
+        onChange={(date) => setExpenses({ ...expense, date: date })}
         className="w-full border border-gray-300 dark:text-gray-200 rounded-lg px-3 py-2"
-      /> */}
+      />
       {/* TODO:
       <input 
         type="date"

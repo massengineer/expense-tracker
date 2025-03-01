@@ -40,7 +40,7 @@ export default function ExpenseList({ expenses }) {
             <p className="text-gray-500 dark:text-gray-400">
               {expense.category}
             </p>
-            {/* <p className="text-gray-500 dark:text-gray-400">{expense.date}</p> */}
+            <p className="text-gray-500 dark:text-gray-400">{expense.date}</p>
           </div>
         ))}
       </div>
