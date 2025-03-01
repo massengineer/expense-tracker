@@ -8,13 +8,24 @@ export default function ExpenseForm({ fetchExpenses }) {
     title: "",
     amount: "",
     category: "",
-    date: "",
+    date: "", // Store the selected date as a string
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:5000/expenses", expense);
-    fetchExpenses();
+
+    try {
+      const formattedExpense = {
+        ...expense,
+        date: new Date(expense.date).toISOString(), // Ensure correct format
+      };
+
+      await axios.post("http://localhost:5000/expenses", formattedExpense);
+      fetchExpenses(); // Refresh expenses after adding
+      setExpense({ title: "", amount: "", category: "", date: "" }); // Reset form
+    } catch (error) {
+      console.error("Error adding expense:", error);
+    }
   };
 
   return (
@@ -24,27 +35,32 @@ export default function ExpenseForm({ fetchExpenses }) {
         placeholder="Title"
         onChange={(e) => setExpense({ ...expense, title: e.target.value })}
         className="p-2 mb-2 rounded-l-md"
+        required
       />
       <input
         type="number"
         placeholder="Amount"
         onChange={(e) => setExpense({ ...expense, amount: e.target.value })}
         className="p-2 mb-2"
+        required
       />
       <input
         type="text"
         placeholder="Category"
         onChange={(e) => setExpense({ ...expense, category: e.target.value })}
-        className="p-2 mb-2"
+        className="p-2 mb-2 rounded-r-md"
+        required
       />
       {/* Datepicker */}
-      <label className="block text-sm font-medium text-gray-700">
+      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
         Select Date
       </label>
       <Datepicker
         value={expense.date}
-        onSelectedDateChanged={(date) => setExpense({ ...expense, date })}
-        className="w-full border border-gray-300 rounded-lg px-3 py-2"
+        onChange={(date) =>
+          setExpense({ ...expense, date: date.toISOString().split("T")[0] })
+        } // Convert to YYYY-MM-DD
+        className="w-full border border-gray-300 dark:text-gray-200 rounded-lg px-3 py-2"
       />
       {/* TODO:
       <input 
@@ -55,10 +71,7 @@ export default function ExpenseForm({ fetchExpenses }) {
       /> This is a preliminary input field but will most likely chamge and not 
       be like this as I want the date to have a calendar date picker and the category 
       to have a dropdown menu with the option of selecting other and then adding custom category*/}
-      <button
-        type="submit"
-        className="p-2 bg-purple-600 text-white rounded-r-md"
-      >
+      <button type="submit" className="p-2 bg-purple-600 text-white rounded-md">
         Add Expense
       </button>
     </form>
