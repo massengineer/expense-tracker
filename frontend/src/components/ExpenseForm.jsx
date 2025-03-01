@@ -101,14 +101,7 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
         className="w-full border border-gray-300 dark:text-gray-200 rounded-lg px-3 py-2"
       />
       {/* TODO:
-      <input 
-        type="date"
-        placeholder="Date"
-        onChange={(e) => setExpense({ ...expense, date: e.target.value })}  
-        className="p-2 mb-2" 
-      /> This is a preliminary input field but will most likely chamge and not 
-      be like this as I want the date to have a calendar date picker and the category 
-      to have a dropdown menu with the option of selecting other and then adding custom category*/}
+      -category to have a dropdown menu with the option of selecting other and then adding custom category*/}
       {/* Add Expense Button */}
       <div className="absolute top-4 left-2/3 -translate-x-1/3">
         <button
