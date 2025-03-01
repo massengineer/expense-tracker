@@ -36,35 +36,6 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
     }
   };
 
-  // // Handle date change from Flowbite datepicker
-  // const handleDateChange = (date) => {
-  //   // If the date is valid, format it, otherwise set it to null
-  //   const formattedDate = date ? date.toISOString().split("T")[0] : null;
-  //   setExpense({ ...expense, date: formattedDate });
-  // };
-
-  // // Handle date change from Flowbite datepicker
-  // const handleDateChange = (date) => {
-  //   if (date) {
-  //     // Convert UTC date to UK Date format (yyyy-mm-dd)
-  //     const formattedDate = formatDateToUK(date);
-  //     setExpense({ ...expense, date: formattedDate });
-  //   } else {
-  //     setExpense({ ...expense, date: null });
-  //   }
-  // };
-
-  // // Helper function to convert UTC date to YYYY-MM-DD format (UK Date format)
-  // const formatDateToUK = (utcDate) => {
-  //   const date = new Date(utcDate);
-  //   const year = date.getUTCFullYear();
-  //   const month = String(date.getUTCMonth() + 1).padStart(2, "0"); // Ensure two digits
-  //   const day = String(date.getUTCDate()).padStart(2, "0"); // Ensure two digits
-
-  //   // Return the formatted date in YYYY-MM-DD
-  //   return `${year}-${month}-${day}`;
-  // };
-
   return (
     <form onSubmit={handleSubmit} className="p-4 bg-gray-200 dark:bg-gray-800">
       <input
