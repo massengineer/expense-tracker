@@ -101,7 +101,8 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
         className="w-full border border-gray-300 dark:text-gray-200 rounded-lg px-3 py-2"
       />
       {/* TODO:
-      -category to have a dropdown menu with the option of selecting other and then adding custom category*/}
+      -category to have a dropdown menu with the option of selecting other and then adding custom category
+      -add expense and delete all buttons need to be dynamic and stretch with screen without overlapping each other*/}
       {/* Add Expense Button */}
       <div className="absolute top-4 left-2/3 -translate-x-1/3">
         <button
