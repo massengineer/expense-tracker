@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Datepicker } from "flowbite-react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import ThemeToggle from "./ThemeToggle";
 
 export default function ExpenseForm({ setExpenses, fetchExpenses }) {
   const [expense, setExpense] = useState({
@@ -57,14 +58,17 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 bg-gray-200 dark:bg-gray-800">
-      <div className="flex w-full">
+    <form
+      onSubmit={handleSubmit}
+      className="relative p-4 bg-gray-200 dark:bg-gray-800"
+    >
+      <div className="flex flex-wrap w-full gap-4 mb-4">
         <input
           type="text"
           placeholder="Title"
           value={expense.title}
           onChange={(e) => setExpense({ ...expense, title: e.target.value })}
-          className="p-2 border border-gray-300 rounded-l-md w-1/4"
+          className="p-2 border border-gray-300 rounded-md w-full sm:w-1/4"
           required
         />
         <input
@@ -72,18 +76,18 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
           placeholder="Amount"
           value={expense.amount}
           onChange={(e) => setExpense({ ...expense, amount: e.target.value })}
-          className="p-2 border border-gray-300 w-1/4"
+          className="p-2 border border-gray-300 rounded-md w-full sm:w-1/4"
           required
         />
 
         {/* Category Dropdown */}
         <div
-          className="relative w-1/4"
+          className="relative w-full sm:w-1/4"
           onMouseEnter={() => setDropdownOpen(true)}
           onMouseLeave={() => setDropdownOpen(false)}
         >
           <button
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-r-md px-5 py-2.5 text-center inline-flex items-center justify-between dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md px-5 py-2.5 w-full text-center inline-flex items-center justify-between dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             type="button"
           >
             {expense.category}
@@ -127,14 +131,21 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
             </div>
           )}
         </div>
+        <div className="w-full sm:w-1/4">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            Select Date*
+          </label>
+          <Datepicker
+            value={expense.date ? new Date(expense.date) : null}
+            onChange={(date) => setExpense({ ...expense, date: date })}
+            className="w-full sm:w-64 border border-gray-300 dark:text-gray-200 rounded-lg px-3 py-3"
+            style={{ zIndex: 1000 }} // Ensure the date picker popup stays on top
+          />
+        </div>
+        <div className="absolute top-4 right-4 z-10">
+          <ThemeToggle />
+        </div>
       </div>
-
-      <Datepicker
-        value={expense.date ? new Date(expense.date) : null}
-        onChange={(date) => setExpense({ ...expense, date: date })}
-        className="w-64 border border-gray-300 dark:text-gray-200 rounded-lg px-3 py-3 z-50"
-        style={{ zIndex: 1000 }} // Ensure the date picker popup stays on top
-      />
 
       {/* Datepicker */}
       {/* <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">

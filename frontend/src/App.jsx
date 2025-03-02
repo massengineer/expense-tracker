@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
-import ThemeToggle from "./components/ThemeToggle";
+
 import axios from "axios";
 
 function App() {
@@ -23,9 +23,6 @@ function App() {
 
   return (
     <div className="App">
-      <div className="absolute right-4 top-4">
-        <ThemeToggle />
-      </div>
       <ExpenseForm fetchExpenses={fetchExpenses} setExpenses={setExpenses} />
       <div className="expense-content">
         <ExpenseList expenses={expenses} />
