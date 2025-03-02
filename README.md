@@ -7,5 +7,7 @@ The web app will start very simple and from there on I will try to make it more 
 ## TODO:
 
 -Group listed items and sort them into chronological order like the graph's x-axis
+
 -Maybe allow the group of things using a filter menu for entries
+
 -Have a breakdown of total expenses each month and maybe a carousel to flick through dashboards of each month or when filtering, the dashboard updates just for that month/ week
