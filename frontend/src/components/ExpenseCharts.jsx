@@ -39,6 +39,11 @@ export default function ExpenseCharts({ expenses }) {
     "#2563EB", // Sky Blue
   ];
 
+  // Sort expenses by date to ensure chronological order on the Line Chart
+  const sortedExpenses = expenses.sort(
+    (a, b) => new Date(a.date) - new Date(b.date)
+  );
+
   return (
     <div className="flex flex-col md:flex-row justify-center items-center gap-6 p-6 bg-gray-100 dark:bg-gray-900 rounded-xl shadow-lg">
       {/* Pie Chart for Category Breakdown */}
@@ -77,10 +82,27 @@ export default function ExpenseCharts({ expenses }) {
           Expense Trends
         </h2>
         <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={expenses}>
+          <LineChart
+            data={sortedExpenses}
+            margin={{ bottom: 20, right: 20, left: 20 }}
+          >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis />
+            <XAxis
+              dataKey="date"
+              label={{
+                value: "Date of Expense",
+                position: "insideBottom",
+                offset: -15,
+              }}
+            />
+            <YAxis
+              label={{
+                value: "Expense (£)",
+                angle: -90,
+                position: "insideLeft",
+                dy: 50,
+              }}
+            />
             <Tooltip />
             <Line
               type="monotone"
