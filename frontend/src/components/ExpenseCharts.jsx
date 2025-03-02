@@ -26,7 +26,18 @@ export default function ExpenseCharts({ expenses }) {
   }, []);
 
   // Colors for Pie Chart
-  const COLORS = ["#4F46E5", "#22C55E", "#EAB308", "#EF4444", "#06B6D4"];
+  const COLORS = [
+    "#4F46E5", // Blue
+    "#22C55E", // Green
+    "#EAB308", // Yellow
+    "#EF4444", // Red
+    "#06B6D4", // Teal
+    "#F472B6", // Pink
+    "#9333EA", // Purple
+    "#F97316", // Orange
+    "#10B981", // Emerald
+    "#2563EB", // Sky Blue
+  ];
 
   return (
     <div className="flex flex-col md:flex-row justify-center items-center gap-6 p-6 bg-gray-100 dark:bg-gray-900 rounded-xl shadow-lg">
