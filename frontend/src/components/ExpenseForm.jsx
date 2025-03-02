@@ -7,9 +7,24 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
   const [expense, setExpense] = useState({
     title: "",
     amount: "",
-    category: "",
+    category: "Select Category", // Default category placeholder
     date: null, // Store the selected date as a string
   });
+
+  const [isDropdownOpen, setDropdownOpen] = useState(false); // Track dropdown state
+
+  const categories = [
+    "Food",
+    "Tech",
+    "Luxuries",
+    "Education",
+    "Social",
+    "Business",
+    "Groceries",
+    "Car",
+    "Bills",
+    "Other",
+  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +35,12 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
         expense
       );
       setExpenses((prevExpenses) => [...prevExpenses, response.data]);
-      setExpense({ title: "", amount: "", category: "", date: null });
+      setExpense({
+        title: "",
+        amount: "",
+        category: "Select Category",
+        date: null,
+      });
       fetchExpenses();
     } catch (error) {
       console.error("Error adding expense:", error);
@@ -54,14 +74,67 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
         className="p-2 mb-2"
         required
       />
-      <input
+      {/* <input
         type="text"
         placeholder="Category"
         value={expense.category}
         onChange={(e) => setExpense({ ...expense, category: e.target.value })}
         className="p-2 mb-2 rounded-r-md"
         required
-      />
+      /> */}
+
+      {/* Category Dropdown */}
+      <div
+        className="absolute inline-block"
+        onMouseEnter={() => setDropdownOpen(true)}
+        onMouseLeave={() => setDropdownOpen(false)}
+      >
+        <button
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-r-md text-sm px-5 py-2.5 text-center inline-flex items-center justify-between dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          type="button"
+        >
+          {expense.category}
+          <svg
+            className="w-2.5 h-2.5 ml-3"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 10 6"
+          >
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="m1 1 4 4 4-4"
+            />
+          </svg>
+        </button>
+
+        {/* Dropdown menu */}
+        {isDropdownOpen && (
+          <div className="absolute left-0 z-10 mt-1 bg-white divide-y divide-gray-100 rounded-lg shadow-md w-full dark:bg-gray-700">
+            <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+              {categories.map((category) => (
+                <li key={category}>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setExpense({ ...expense, category });
+                      setDropdownOpen(false);
+                    }}
+                    className="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    {category}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
       {/* Datepicker */}
       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
         Select Date
@@ -75,21 +148,36 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
       -category to have a dropdown menu with the option of selecting other and then adding custom category
       -add expense and delete all buttons need to be dynamic and stretch with screen without overlapping each other*/}
       {/* Add Expense Button */}
-      <div className="absolute top-4 left-2/3 -translate-x-1/3">
+      {/* <div className="absolute top-4 left-2/3 -translate-x-1/3">
         <button
           type="submit"
           className="p-2 bg-purple-600 text-white rounded-md"
         >
           Add Expense
         </button>
-      </div>
+      </div> */}
 
       {/* Delete All Button */}
-      <div className="absolute top-4 right-60">
+      {/* <div className="absolute top-4 right-60">
         <button
           type="button"
           onClick={handleDeleteAll}
           className="p-2 bg-red-500 text-white rounded-md"
+        >
+          Delete All
+        </button>
+      </div> */}
+      <div className="flex justify-between mt-4">
+        <button
+          type="submit"
+          className="p-2 bg-green-500 text-white rounded-md w-1/3 left-2/3 translate-x-1/3"
+        >
+          Add Expense
+        </button>
+        <button
+          type="button"
+          onClick={handleDeleteAll}
+          className="p-2 bg-red-500 text-white rounded-md w-1/3 left-2/3 -translate-x-1/3"
         >
           Delete All
         </button>
