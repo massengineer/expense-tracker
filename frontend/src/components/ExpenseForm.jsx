@@ -147,19 +147,6 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
         </div>
       </div>
 
-      {/* Datepicker */}
-      {/* <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-        Select Date*
-      </label>
-      <Datepicker
-        value={expense.date ? new Date(expense.date) : null} // Pass a valid Date object or null
-        onChange={(date) => setExpense({ ...expense, date: date })}
-        className="w-64 border border-gray-300 dark:text-gray-200 rounded-lg px-3 py-3"
-      /> */}
-
-      {/* TODO:
-      -category to have a dropdown menu with the option of selecting other and then adding custom category
-      -add expense and delete all buttons need to be dynamic and stretch with screen without overlapping each other*/}
       <div className="flex justify-between mt-4">
         <button
           type="submit"
