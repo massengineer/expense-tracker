@@ -3,6 +3,8 @@ import axios from "axios";
 import ExpenseCharts from "./ExpenseCharts";
 import PropTypes from "prop-types";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; // For Vite (React)
+
 export default function ExpenseList({ expenses }) {
   const [setExpenses] = useState([]);
 
@@ -12,7 +14,7 @@ export default function ExpenseList({ expenses }) {
 
   const fetchExpenses = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/expenses");
+      const response = await axios.get(`${API_BASE_URL}/expenses`);
       setExpenses(response.data);
     } catch (error) {
       console.error("Error fetching expenses:", error);

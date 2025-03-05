@@ -4,6 +4,8 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import ThemeToggle from "./ThemeToggle";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; // For Vite (React)
+
 export default function ExpenseForm({ setExpenses, fetchExpenses }) {
   const [expense, setExpense] = useState({
     title: "",
@@ -31,10 +33,7 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/expenses",
-        expense
-      );
+      const response = await axios.post(`${API_BASE_URL}/expenses`, expense);
       setExpenses((prevExpenses) => [...prevExpenses, response.data]);
       setExpense({
         title: "",
@@ -50,7 +49,7 @@ export default function ExpenseForm({ setExpenses, fetchExpenses }) {
 
   const handleDeleteAll = async () => {
     try {
-      await axios.delete("http://localhost:5000/expenses");
+      await axios.delete(`${API_BASE_URL}/expenses`);
       setExpenses([]); // Clear UI immediately
     } catch (error) {
       console.error("Error deleting expenses:", error);
